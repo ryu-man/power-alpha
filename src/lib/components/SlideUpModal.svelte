@@ -15,7 +15,7 @@
 		transition:fly={{ duration: 100, y: window.innerHeight / 4 }}
 	>
 		<div
-			class="flex flex-col relative px-4 pt-12 pb-16 gap-4 overflow-y-auto max-h-full scrollbar-none w-full"
+			class="flex flex-col relative px-4 pt-12 pb-9 gap-9 overflow-y-auto max-h-full scrollbar-none w-full"
 		>
 			<div class="flex flex-col">
 				<button class="text-[24px] text-black absolute top-4 right-4" on:click={onclose}>
@@ -90,9 +90,19 @@
 				</div>
 			</div>
 
-			<button class="bg-[#1E1E1E] text-white w-full px-6 py-3 font-medium rounded-xl text-lg"
-				>Confirm Total</button
-			>
+			<div class="flex flex-col gap-5">
+				<button class="bg-[#1E1E1E] text-white w-full px-6 py-3 font-medium rounded-xl text-lg"
+					>Confirm Total</button
+				>
+
+				<div class="flex justify-center">
+					<div class="flex gap-2">
+						<div class="h-2 aspect-square rounded-full bg-black" />
+						<div class="h-2 aspect-square rounded-full bg-black/50" />
+						<div class="h-2 aspect-square rounded-full bg-black/50" />
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 {/if}
