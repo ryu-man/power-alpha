@@ -106,7 +106,7 @@
 		@apply flex justify-between;
 	}
 	.field {
-		@apply flex flex-col font-medium text-2xl py-2 px-4;
+		@apply flex flex-col font-medium text-2xl py-[7px] px-4;
 
 		&.field-h {
 			@apply flex-row justify-between w-full items-center;
