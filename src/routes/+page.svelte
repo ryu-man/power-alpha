@@ -8,8 +8,8 @@
 	}
 </script>
 
-<div class="flex flex-col items-center overflow-hidden">
-	<button on:click={onclick}>Open modal</button>
+<div class="flex flex-col items-center overflow-hidden p-4">
+	<button class="bg-black text-white px-3 py-2" on:click={onclick}>Open modal</button>
 
 	<SlideUpModal bind:open />
 </div>
