@@ -1,18 +1,21 @@
 <script lang="ts">
+	import { Logo } from '$lib/components';
 </script>
 
 <div class="flex flex-col gap-4">
 	<div class="wrapper">
 		<div class="flex justify-between items-center">
-			<div class="h-12 aspect-square bg-secondary rounded-xl"></div>
+			<div class="text-secondary text-[40px]">
+				<Logo />
+			</div>
 
 			<div class="text-3xl">
-				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
-					><path
+				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+					<path
 						fill="currentColor"
 						d="M7 12a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0"
-					/></svg
-				>
+					/>
+				</svg>
 			</div>
 		</div>
 	</div>
