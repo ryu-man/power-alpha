@@ -8,6 +8,6 @@
 
 <style>
 	.app-root {
-		@apply w-[100svw] h-[100svh] overflow-hidden bg-neutral-200 tracking-[-0.07rem];
+		@apply w-[100svw] h-[100svh] overflow-hidden bg-neutral-200 tracking-[-0.07rem] pt-14;
 	}
 </style>
