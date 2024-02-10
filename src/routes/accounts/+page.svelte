@@ -59,7 +59,11 @@
 			</div>
 
 			<div class="account flex items-center gap-2">
-				<div class="h-12 aspect-[2/1] bg-neutral-200 rounded-xl"></div>
+				<div class="relative h-12 aspect-[2/1] bg-neutral-200 rounded-xl">
+					<div class="absolute top-4 left-2 bg-neutral-400 h-2 aspect-[2/1] rounded-sm"></div>
+
+					<div class="absolute top-5 left-8 bg-neutral-400 h-1 w-14 rounded-sm"></div>
+				</div>
 				<div class="flex flex-col">
 					<div class="font-medium">Bank of America</div>
 					<div class="text-xs opacity-50">**9688 / **3133</div>
