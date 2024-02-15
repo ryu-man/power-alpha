@@ -1,5 +1,11 @@
 <script lang="ts">
 	import { Logo } from '$lib/components';
+
+	let openPopover = false;
+
+	function onclick() {
+		openPopover = !openPopover;
+	}
 </script>
 
 <div class="flex flex-col gap-4">
@@ -9,13 +15,26 @@
 				<Logo />
 			</div>
 
-			<div class="text-3xl">
-				<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
-					<path
-						fill="currentColor"
-						d="M7 12a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0"
-					/>
-				</svg>
+			<div class="relative">
+				<button class="text-3xl" on:click={onclick}>
+					<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+						<path
+							fill="currentColor"
+							d="M7 12a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0m7 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0"
+						/>
+					</svg>
+				</button>
+
+				{#if openPopover}
+					<!-- content here -->
+					<div class="popover absolute top-full right-0 translate-y-2 z-20">
+						<ul
+							class="flex flex-col shadow-md border py-2 min-w-fit whitespace-nowrap bg-white cursor-pointer rounded-lg"
+						>
+							<li class="px-6 py-2 hover:bg-neutral-900/10">Item 1</li>
+						</ul>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
