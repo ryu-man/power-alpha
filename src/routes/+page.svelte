@@ -15,18 +15,4 @@
 </div>
 
 <style lang="postcss">
-	.fields {
-		@apply flex justify-between;
-	}
-	.field {
-		@apply flex flex-col font-medium text-2xl py-3 px-4;
-
-		&.field-h {
-			@apply flex-row justify-between w-full;
-		}
-
-		& > .label {
-			@apply text-base text-[#1E1E1E] font-normal;
-		}
-	}
 </style>
