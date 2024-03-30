@@ -1,10 +1,59 @@
 <script lang="ts">
 	import { Logo } from '$lib/components';
 	import { fly } from 'svelte/transition';
+
+	function numberonly(node: HTMLInputElement) {
+		const handler = (ev: KeyboardEvent) => {
+			const allowed_keys = [
+				'Backspace',
+				'Delete',
+				'Tab',
+				'ArrowRight',
+				'ArrowLeft',
+				'ArrowUp',
+				'ArrowBottom'
+			];
+			if (allowed_keys.includes(ev.key)) {
+				return true;
+			}
+
+			if (+ev.key) {
+				return true;
+			}
+
+			ev.preventDefault();
+			return false;
+		};
+
+		node.addEventListener('keydown', handler);
+
+		return {
+			destroy() {
+				node.removeEventListener('keydown', handler);
+			}
+		};
+	}
+
+	function navigation(node: HTMLInputElement) {
+		const handler = (ev: KeyboardEvent) => {
+			if (node.value.length === node.maxLength) {
+				node.nextElementSibling?.focus();
+				return;
+			}
+		};
+
+		node.addEventListener('keyup', handler);
+
+		return {
+			destroy() {
+				node.removeEventListener('keyup', handler);
+			}
+		};
+	}
 </script>
 
 <div
-	class="flex flex-col relative pb-9 overflow-y-auto max-h-full scrollbar-none w-full min-h-full"
+	class="flex flex-col relative overflow-y-auto max-h-full scrollbar-none w-full min-h-full"
 >
 	<div class="px-5">
 		<button class="text-[24px] text-black h-16" on:click={onclose}>
@@ -67,38 +116,266 @@
 		</div>
 
 		<div class="fields gap-4">
-			<div class="field field-compact gap-1.5 flex-1" data-invalid={true}>
+			<div class="field field-compact gap-1.5 flex-1" data-invalid={'true'}>
 				<div class="pl-2">
 					<label class="text-xs font-bold" for="">First Name</label>
 					<div class="error-message">Enter your full address</div>
 				</div>
 
-				<input class="" type="text" />
+				<input class="w-full" type="text" />
 			</div>
-			<div class="field field-compact gap-1.5 flex-1" data-invalid={true}>
+
+			<div class="field field-compact gap-1.5 flex-1" data-invalid={'true'}>
 				<div class="pl-2">
 					<label class="text-xs font-bold" for="">Last Name</label>
 					<div class="error-message">Enter your full address</div>
 				</div>
 
-				<input class="" type="text" />
+				<input class="w-full" type="text" />
 			</div>
 		</div>
 
-		<div class="field field-compact gap-1.5" data-invalid={true}>
+		<div class="field field-compact gap-1.5" data-invalid={'true'}>
 			<div class="pl-2">
 				<label class="text-xs font-bold" for="">Home Address</label>
 				<div class="error-message">Enter your full address</div>
 			</div>
 			<input class="" type="text" aria-invalid="true" />
 		</div>
+
+		<div class="field field-compact gap-1.5 flex-1" data-invalid={'false'}>
+			<div class="pl-2">
+				<label class="text-xs font-bold" for="">Phone Number</label>
+			</div>
+
+			<div class="number-inputs flex justify-between gap-1">
+				<input
+					class="w-[3ch] min-w-1ch box-content"
+					type="text"
+					maxlength="3"
+					tabindex="0"
+					style="flex:3"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<div class="text-black/20">-</div>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+			</div>
+		</div>
+
+		<div class="field field-compact gap-1.5 flex-1" data-invalid={'false'}>
+			<div class="pl-2">
+				<label class="text-xs font-bold" for="">Social Security Number</label>
+			</div>
+
+			<div class="number-inputs flex justify-between gap-1">
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="3"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<div class="text-black/20">-</div>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<div class="text-black/20">-</div>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+			</div>
+		</div>
+
+		<div class="field field-compact gap-1.5 flex-1" data-invalid={'false'}>
+			<div class="pl-2">
+				<label class="text-xs font-bold" for="">Date of Birth</label>
+			</div>
+
+			<div class="number-inputs flex justify-between gap-1">
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="3"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<div class="text-black/20">-</div>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+
+				<div class="text-black/20">-</div>
+
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+				<input
+					class="w-[1ch] min-w-1ch box-content"
+					type="text"
+					maxlength="1"
+					tabindex="0"
+					use:numberonly
+				/>
+			</div>
+		</div>
+
+		<div class="field field-compact gap-1.5" data-invalid={'false'}>
+			<div class="pl-2">
+				<label class="text-xs font-bold" for="">Occupation</label>
+				<!-- <div class="error-message">Enter your full address</div> -->
+			</div>
+			<input class="" type="text" aria-invalid="true" />
+		</div>
 	</div>
 
-	<div class="border-b border-secondary/20 my-4 w-full"></div>
+	<div class="pb-9"></div>
 
 	<div class="flex-1"></div>
 
-	<div class="flex flex-col gap-4 px-5">
+	<div class="flex flex-col gap-4 px-5 sticky bottom-0 bg-neutral-200 pb-9 pt-3 border-t border-secondary/20">
 		<div class="text-xs text-center font-normal">
 			This is required by federal regulations to confirm your identity. We never store this info and
 			it will not result in a credit check!
@@ -125,7 +402,7 @@
 			@apply text-secondary;
 		}
 
-		&[data-invalid] {
+		&[data-invalid='true'] {
 			@apply text-[#1547F8];
 			--field-invalid: 1;
 		}
@@ -134,10 +411,16 @@
 			@apply text-current font-medium text-xs;
 		}
 
-		& > input {
-			@apply min-w-0 rounded-xl border border-secondary/30 w-full outline-none pl-4 pr-2 text-base py-2 text-secondary font-bold outline-0 outline outline-[#1547F8] outline-offset-0;
+		& input {
+			@apply min-w-0 rounded-xl border border-secondary/30 outline-none pl-4 pr-2 text-base py-2 text-secondary font-bold outline-0 outline outline-[#1547F8] outline-offset-0;
 
 			outline-width: calc(var(--field-invalid) * 2px);
+		}
+	}
+
+	.number-inputs {
+		& input {
+			@apply px-1.5 text-center flex-1;
 		}
 	}
 </style>
